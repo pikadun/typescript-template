@@ -1,0 +1,16 @@
+{
+  "extends": "../config/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "common/*": ["../src/common/*"]
+    }
+  },
+  "references": [
+    {
+      "path": "../tsconfig.json"
+    }
+  ],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}

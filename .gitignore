@@ -1,0 +1,17 @@
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Dependency directories
+node_modules/
+
+# Typescript output folder
+lib/
+
+# nyc test coverage
+.nyc_output
+coverage

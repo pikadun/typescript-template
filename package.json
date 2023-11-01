@@ -1,0 +1,51 @@
+{
+  "name": "typescript-monorepo-template",
+  "version": "0.0.1",
+  "description": "A template of typescript monorepo",
+  "scripts": {
+    "watch": "tsc -b --watch",
+    "build": "tsc -b",
+    "test": "TS_NODE_PROJECT=./test ts-node ./test/index.ts",
+    "coverage": "nyc --nycrc-path=./config/.nycrc.json npm test",
+    "prepare": "husky install",
+    "commitlint": "commitlint --config ./config/.commitlintrc.json --edit",
+    "prettier": "prettier . --config ./config/.prettierrc.json --ignore-path .gitignore --cache --write",
+    "eslint": "eslint --config ./config/.eslintrc.json --ignore-path .gitignore --fix .",
+    "lint-staged": "lint-staged --config ./config/.lintstagedrc.json",
+    "type-check": "tsc -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camarojs/camaro.git"
+  },
+  "author": "Dunn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/camarojs/camaro/issues"
+  },
+  "homepage": "https://github.com/camarojs/camaro#readme",
+  "engines": {
+    "node": ">= 18"
+  },
+  "dependencies": {
+    "path-to-regexp": "^6.2.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@types/node": "^20.8.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "cspell": "^7.3.6",
+    "esbuild": "^0.19.3",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "nyc": "^15.1.0",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  }
+}

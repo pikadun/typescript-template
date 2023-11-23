@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { run } from "node:test";
-import { spec } from "node:test/reporters";
+import Reporter from "./reporter";
 
 const getTestFiles = (dir = __dirname, files: string[] = []) => {
   const list = fs.readdirSync(dir);
@@ -21,8 +21,5 @@ run({
   files: getTestFiles(),
   concurrency: true,
 })
-  .once("test:fail", () => {
-    process.exitCode = 1;
-  })
-  .pipe(new spec())
-  .pipe(process.stderr);
+  .pipe(new Reporter())
+  .pipe(process.stdout);

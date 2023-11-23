@@ -9,21 +9,14 @@
     "coverage": "nyc --nycrc-path=./config/.nycrc.json npm test",
     "prepare": "husky install",
     "commitlint": "commitlint --config ./config/.commitlintrc.json --edit",
-    "prettier": "prettier . --config ./config/.prettierrc.json --ignore-path .gitignore --cache --write",
+    "prettier": "prettier --config ./config/.prettierrc.json --ignore-path .gitignore --cache --write .",
     "eslint": "eslint --config ./config/.eslintrc.json --ignore-path .gitignore --fix .",
+    "cspell": "cspell --config ./config/cspell.config.json .",
     "lint-staged": "lint-staged --config ./config/.lintstagedrc.json",
     "type-check": "tsc -b"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/camarojs/camaro.git"
-  },
   "author": "Dunn",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/camarojs/camaro/issues"
-  },
-  "homepage": "https://github.com/camarojs/camaro#readme",
   "engines": {
     "node": ">= 18"
   },

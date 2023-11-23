@@ -1,1 +1,1 @@
-# CamaroJS
+# Typescript Template

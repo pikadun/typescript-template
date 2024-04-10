@@ -1,7 +1,4 @@
 {
-  "*": [
-    "cspell --config ./config/cspell.config.json",
-    "prettier --config ./config/.prettierrc.json --ignore-unknown --write"
-  ],
-  "*.{ts,js}": "eslint --config ./config/.eslintrc.json --fix"
+  "*": "cspell --config ./config/cspell.config.json",
+  "*.ts": "eslint --config ./config/eslint.config.js --fix"
 }

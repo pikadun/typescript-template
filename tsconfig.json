@@ -3,9 +3,11 @@
   "compilerOptions": {
     "outDir": "./lib",
     "rootDir": "./src",
-    "tsBuildInfoFile": "./lib/camaro.tsbuildinfo"
+    "tsBuildInfoFile": "./lib/tsconfig.tsbuildinfo"
   },
-  "files": ["./src/index.ts"],
+  "files": [
+    "./src/index.ts"
+  ],
   "references": [
     {
       "path": "./src/common/tsconfig.json"

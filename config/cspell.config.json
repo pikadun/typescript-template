@@ -4,5 +4,14 @@
     "useCache": true
   },
   "useGitignore": true,
-  "words": ["camaro", "commitlint", "commitlintrc", "endregion", "lintstagedrc", "nycrc", "pikadun", "tsbuildinfo"]
+  "words": [
+    "commitlint",
+    "commitlintrc",
+    "endregion",
+    "lintstagedrc",
+    "nycrc",
+    "pikadun",
+    "subtests",
+    "tsbuildinfo"
+  ]
 }

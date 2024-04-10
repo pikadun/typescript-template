@@ -7,10 +7,9 @@
     "build": "tsc -b",
     "test": "TS_NODE_PROJECT=./test ts-node ./test/index.ts",
     "coverage": "nyc --nycrc-path=./config/.nycrc.json npm test",
-    "prepare": "husky install",
+    "prepare": "husky",
     "commitlint": "commitlint --config ./config/.commitlintrc.json --edit",
-    "prettier": "prettier --config ./config/.prettierrc.json --ignore-path .gitignore --cache --write .",
-    "eslint": "eslint --config ./config/.eslintrc.json --ignore-path .gitignore --fix .",
+    "eslint": "eslint --config ./config/eslint.config.js --fix .",
     "cspell": "cspell --config ./config/cspell.config.json .",
     "lint-staged": "lint-staged --config ./config/.lintstagedrc.json",
     "type-check": "tsc -b"
@@ -21,24 +20,23 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "path-to-regexp": "^6.2.1"
+    "path-to-regexp": "^6.2.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
-    "@commitlint/config-conventional": "^17.7.0",
-    "@types/node": "^20.8.7",
-    "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^6.7.3",
-    "cspell": "^7.3.6",
-    "esbuild": "^0.19.3",
-    "eslint": "^8.50.0",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^14.0.1",
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@eslint/js": "^9.0.0",
+    "@stylistic/eslint-plugin": "^1.7.0",
+    "@types/node": "^20.12.7",
+    "cspell": "^8.7.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "nyc": "^15.1.0",
-    "prettier": "^3.0.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.6.0"
   }
 }

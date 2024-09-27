@@ -3,42 +3,35 @@
   "version": "0.0.1",
   "description": "A template of typescript monorepo",
   "scripts": {
-    "watch": "tsc -b --watch",
-    "build": "tsc -b",
-    "test": "TS_NODE_PROJECT=./test ts-node ./test/index.ts",
-    "coverage": "nyc --nycrc-path=./config/.nycrc.json npm test",
-    "prepare": "husky install",
-    "commitlint": "commitlint --config ./config/.commitlintrc.json --edit",
-    "prettier": "prettier --config ./config/.prettierrc.json --ignore-path .gitignore --cache --write .",
-    "eslint": "eslint --config ./config/.eslintrc.json --ignore-path .gitignore --fix .",
-    "cspell": "cspell --config ./config/cspell.config.json .",
-    "lint-staged": "lint-staged --config ./config/.lintstagedrc.json",
-    "type-check": "tsc -b"
+    "build": "TSX_TSCONFIG_PATH=./scripts/tsconfig.json tsx ./scripts/build.ts",
+    "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
+    "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
+    "eslint": "eslint --config ./eng/eslint.config.js .",
+    "lint": "npm run cspell && npm run eslint",
+    "lint:staged": "lint-staged --config ./eng/.lintstagedrc.json",
+    "prebuild": "npm run type-check",
+    "prepack": "npm run rmdir -- lib && npm run build",
+    "prepare": "husky",
+    "rmdir": "TSX_TSCONFIG_PATH=./scripts/tsconfig.json tsx ./scripts/rmdir.ts",
+    "test": "TSX_TSCONFIG_PATH=./test/tsconfig.json node --enable-source-maps --experimental-test-coverage --import tsx ./test/index.ts",
+    "type-check": "tsc -b ./tsconfig.json --emitDeclarationOnly"
   },
   "author": "Dunn",
   "license": "MIT",
-  "engines": {
-    "node": ">= 18"
-  },
-  "dependencies": {
-    "path-to-regexp": "^6.2.1"
-  },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
-    "@commitlint/config-conventional": "^17.7.0",
-    "@types/node": "^20.8.7",
-    "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^6.7.3",
-    "cspell": "^7.3.6",
-    "esbuild": "^0.19.3",
-    "eslint": "^8.50.0",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^14.0.1",
-    "nyc": "^15.1.0",
-    "prettier": "^3.0.3",
-    "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.2.2"
+    "@camaro/eslint-config": "^1.0.1",
+    "@camaro/tsconfig": "^1.0.3",
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
+    "@types/node": "^22.5.4",
+    "cspell": "^8.14.2",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.10.0",
+    "globals": "^15.9.0",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
+    "tsx": "^4.19.1",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.4.0"
   }
 }

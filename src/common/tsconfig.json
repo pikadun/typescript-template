@@ -1,7 +1,6 @@
 {
-  "extends": "../../config/tsconfig.base.json",
+  "extends": "@camaro/tsconfig/monorepo.json",
   "compilerOptions": {
-    "outDir": "../../lib/common",
-    "tsBuildInfoFile": "../../lib/common.tsbuildinfo"
+    "outDir": "../../lib/common"
   }
 }

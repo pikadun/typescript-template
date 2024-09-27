@@ -1,16 +1,16 @@
 {
-  "extends": "../config/tsconfig.base.json",
+  "extends": "@camaro/tsconfig/monorepo.json",
   "compilerOptions": {
+    "inlineSourceMap": true,
     "paths": {
-      "common/*": ["../src/common/*"]
+      "@common/*": [
+        "../src/common/*"
+      ]
     }
   },
   "references": [
     {
       "path": "../tsconfig.json"
     }
-  ],
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
-  }
+  ]
 }

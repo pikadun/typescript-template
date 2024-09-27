@@ -1,0 +1,19 @@
+{
+  "cache": {
+    "cacheLocation": "../node_modules/.cache/cspell",
+    "useCache": true
+  },
+  "useGitignore": true,
+  "words": [
+    "camaro",
+    "commitlint",
+    "commitlintrc",
+    "endregion",
+    "linebreak",
+    "lintstagedrc",
+    "outdir",
+    "outfile",
+    "pikadun",
+    "subtests"
+  ]
+}

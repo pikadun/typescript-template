@@ -1,8 +1,0 @@
-{
-  "cache": {
-    "cacheLocation": "../node_modules/.cache/cspell",
-    "useCache": true
-  },
-  "useGitignore": true,
-  "words": ["camaro", "commitlint", "commitlintrc", "endregion", "lintstagedrc", "nycrc", "pikadun", "tsbuildinfo"]
-}

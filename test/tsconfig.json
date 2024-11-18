@@ -1,7 +1,7 @@
 {
   "extends": "@camaro/tsconfig/monorepo.json",
   "compilerOptions": {
-    "inlineSourceMap": true,
+    "outDir": "../out/test",
     "paths": {
       "@common/*": [
         "../src/common/*"

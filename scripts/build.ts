@@ -7,7 +7,7 @@ async function build() {
         outfile: "lib/index.js",
         packages: "external",
         platform: "node",
-        target: "node20",
+        target: "node22",
     };
 
     await esbuild(options);

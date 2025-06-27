@@ -1,4 +1,4 @@
-const ts = require("@camaro/eslint-config/ts");
+const { ts } = require("@camaro/eslint-config");
 const globals = require("globals");
 
 /** @type {import('eslint').Linter.Config[]} */

@@ -3,6 +3,9 @@
   "references": [
     {
       "path": "./eng/tsconfig.server.json",
+    },
+    {
+      "path": "./eng/tsconfig.scripts.json",
     }
   ]
 }

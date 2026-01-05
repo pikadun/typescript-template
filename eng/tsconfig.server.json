@@ -3,7 +3,8 @@
   "compilerOptions": {
     "rootDir": "../src",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "tsBuildInfoFile": "../node_modules/.cache/tsconfig.server.tsbuildinfo"
   },
   "include": [
     "../src/**/*.ts"

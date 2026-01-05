@@ -12,7 +12,7 @@
     "lint": "npm run cspell && npm run eslint",
     "lint:staged": "lint-staged --config ./eng/.lintstagedrc.json",
     "postinstall": "husky || true",
-    "type-check": "tsc --noEmit --project ./tsconfig.json"
+    "type-check": "tsc --build ./tsconfig.json"
   },
   "author": "Dunn",
   "license": "MIT",

@@ -1,1 +1,1 @@
-# Typescript Template
+# Web Template

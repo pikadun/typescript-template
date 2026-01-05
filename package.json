@@ -1,8 +1,10 @@
 {
-  "name": "typescript-monorepo-template",
+  "name": "web-template",
   "version": "0.0.1",
-  "description": "A template of typescript monorepo",
+  "description": "Server-first HTML rendering stack with NestJS and Rsbuild",
+  "type": "module",
   "scripts": {
+    "dev": "node --experimental-strip-types scripts/start.ts",
     "build": "tsc -b ./tsconfig.json",
     "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
     "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
@@ -10,26 +12,31 @@
     "lint": "npm run cspell && npm run eslint",
     "lint:staged": "lint-staged --config ./eng/.lintstagedrc.json",
     "postinstall": "husky || true",
-    "prepack": "npm run build",
-    "test": "TSX_TSCONFIG_PATH=./test/tsconfig.json tsx ./test/index.ts",
     "type-check": "tsc --noEmit --project ./tsconfig.json"
   },
   "author": "Dunn",
   "license": "MIT",
+  "dependencies": {
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/core": "^11.1.11",
+    "@nestjs/platform-fastify": "^11.1.11",
+    "@nestjs/sequelize": "^11.0.1",
+    "sequelize": "^6.37.7",
+    "sequelize-typescript": "^2.1.6",
+    "sqlite3": "^5.1.7"
+  },
   "devDependencies": {
-    "@camaro/eslint-config": "^3.5.1",
-    "@camaro/tsconfig": "^1.1.3",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@camaro/eslint-config": "~0.1.0",
+    "@camaro/tsconfig": "^1.2.0",
+    "@commitlint/cli": "^20.3.0",
+    "@commitlint/config-conventional": "^20.3.0",
+    "@rsbuild/core": "^1.7.1",
     "@types/node": "^24.0.4",
-    "@typescript/native-preview": "^7.0.0-dev.20250626.1",
-    "cspell": "^9.1.2",
-    "esbuild": "^0.25.5",
-    "eslint": "^9.29.0",
-    "globals": "^16.2.0",
+    "cspell": "^9.4.0",
+    "eslint": "^9.39.2",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
-    "tsx": "^4.20.3",
-    "typescript-eslint": "^8.35.0"
+    "lint-staged": "^16.2.7",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.51.0"
   }
 }

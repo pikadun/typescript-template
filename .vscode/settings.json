@@ -1,16 +1,13 @@
 {
-    "cSpell.import": [
-        "./eng/cspell.config.json"
-    ],
-    "eslint.options": {
-        "overrideConfigFile": "./eng/eslint.config.js",
-    },
-    "eslint.workingDirectories": [
-        "."
-    ],
-    "eslint.runtime": "node",
-    "typescript.tsdk": "./node_modules/typescript/lib",
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": "explicit"
-    }
+  "cSpell.import": [
+    "./eng/cspell.config.json"
+  ],
+  "eslint.options": {
+    "overrideConfigFile": "./eng/eslint.config.js",
+  },
+  "eslint.workingDirectories": [
+    "."
+  ],
+  "eslint.runtime": "node",
+  "typescript.tsdk": "./node_modules/typescript/lib",
 }

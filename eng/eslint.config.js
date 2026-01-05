@@ -1,19 +1,13 @@
-const { ts } = require("@camaro/eslint-config");
-const globals = require("globals");
+import { ts } from "@camaro/eslint-config/typescript";
 
 /** @type {import('eslint').Linter.Config[]} */
-module.exports = [
+export default [
     ...ts,
-    { ignores: ["lib/**", "out/**"] },
     {
-        files: ["eng/**/*.js"],
-        languageOptions: { globals: { ...globals.node } },
+        ignores: ["lib/**"],
     },
     {
-        files: ["test/**/*.ts"],
-        rules: {
-            "@typescript-eslint/no-extraneous-class": "off",
-            "@typescript-eslint/no-floating-promises": "off",
-        },
+        files: ["src/**/*.module.ts"],
+        rules: { "@typescript-eslint/no-extraneous-class": "off" },
     },
 ];

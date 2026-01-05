@@ -1,0 +1,11 @@
+{
+  "extends": "../eng/tsconfig.base.json",
+  "compilerOptions": {
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true,
+  },
+  "include": [
+    "**/*.ts",
+    "../src/global.d.ts"
+  ]
+}

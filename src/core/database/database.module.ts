@@ -1,5 +1,5 @@
-import { DynamicModule, Global, Module, Provider } from "@nestjs/common";
-import { Sequelize, AbstractDialect, Options, ModelStatic, Model } from "@sequelize/core";
+import { DynamicModule, Global, Logger, Module, Provider } from "@nestjs/common";
+import { Sequelize, Options, ModelStatic, Model } from "@sequelize/core";
 import { SqliteDialect } from "@sequelize/sqlite3";
 
 export const SEQUELIZE_PROVIDER = Symbol("SEQUELIZE_PROVIDER");
@@ -9,10 +9,19 @@ export type Repository<T extends Model> = ModelStatic<T>;
 @Module({})
 export class DatabaseModule {
     static models = new Set<ModelStatic>();
+    static logger = new Logger(DatabaseModule.name);
 
     static forRoot() {
-        const options: Options<AbstractDialect> = {
+        const options: Options<SqliteDialect> = {
             dialect: SqliteDialect,
+            storage: ":memory:",
+            logging: (sql) => {
+                this.logger.debug(sql);
+            },
+            pool: {
+                idle: Infinity,
+                max: 1,
+            },
         };
 
         const dynamicModule: DynamicModule = {

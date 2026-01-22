@@ -7,11 +7,16 @@ const logger = new Logger("Main");
 let app: NestFastifyApplication;
 
 const bootstrap = async () => {
-    app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
+    app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
+        // TODO: enable this only in development mode
+        forceCloseConnections: true,
+    });
 
     const server = await app.listen(3000);
     const appUrl = await app.getUrl();
+
     logger.log(`Application is running on: ${appUrl}`);
+
     return server;
 };
 

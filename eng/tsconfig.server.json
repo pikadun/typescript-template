@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "../src",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "tsBuildInfoFile": "../node_modules/.cache/tsconfig.server.tsbuildinfo"

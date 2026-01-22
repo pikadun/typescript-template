@@ -1,11 +1,11 @@
 import { defineConfig, type EnvironmentConfig } from "@rsbuild/core";
 import pkg from "../package.json" with { type: "json" };
-import { DIST_DIR, ROOT_DIR, SERVER_ENTRY_PATH } from "./constant.ts";
+import { DIST_DIR, ROOT_DIR, SERVER_ENTRY_NAME, SERVER_ENTRY_PATH } from "./constant.ts";
 
 const serverConfig: EnvironmentConfig = {
     source: {
         entry: {
-            main: SERVER_ENTRY_PATH,
+            [SERVER_ENTRY_NAME]: SERVER_ENTRY_PATH,
         },
         decorators: {
             version: "legacy",
@@ -24,7 +24,7 @@ const serverConfig: EnvironmentConfig = {
     },
 };
 
-export default defineConfig({
+export const rsbuildConfig = defineConfig({
     root: ROOT_DIR,
     mode: process.env.BUILD_ENV === "production" ? "production" : "development",
     server: {

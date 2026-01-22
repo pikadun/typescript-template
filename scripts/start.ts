@@ -2,8 +2,8 @@ import fs from "node:fs/promises";
 import type { Server } from "node:http";
 import path from "node:path";
 import { createRsbuild } from "@rsbuild/core";
-import rsbuildConfig from "./rsbuild.config.ts";
-import { DIST_DIR } from "./constant.ts";
+import { rsbuildConfig } from "./rsbuild.config.ts";
+import { DIST_DIR, SERVER_ENTRY_NAME } from "./constant.ts";
 
 async function startDevServer() {
     const rsbuild = await createRsbuild({ rsbuildConfig });
@@ -15,7 +15,7 @@ async function startDevServer() {
     let mtime: number | undefined;
 
     rsbuild.onAfterDevCompile(async () => {
-        const serverBundlePath = path.resolve(DIST_DIR, "main.js");
+        const serverBundlePath = path.resolve(DIST_DIR, `${SERVER_ENTRY_NAME}.js`);
         const stats = await fs.stat(serverBundlePath);
         if (mtime === stats.mtimeMs) {
             return;
@@ -23,7 +23,7 @@ async function startDevServer() {
 
         mtime = stats.mtimeMs;
         await nestApp?.stop();
-        nestApp = await devServer.environments.server?.loadBundle("main");
+        nestApp = await devServer.environments.server?.loadBundle(SERVER_ENTRY_NAME);
         if (nestApp) {
             const httpServer = await nestApp.bootstrap();
             devServer.connectWebSocket({ server: httpServer });

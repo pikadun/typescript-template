@@ -24,4 +24,8 @@ const stop = async () => {
     await app.close();
 };
 
+if (!global.devServer) {
+    await bootstrap();
+}
+
 export { bootstrap, stop };

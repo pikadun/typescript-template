@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --experimental-strip-types scripts/start.ts",
-    "build": "tsc -b ./tsconfig.json",
+    "build": "BUILD_ENV=production rsbuild build --config ./scripts/rsbuild.config.ts",
     "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
     "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
     "eslint": "eslint --config ./eng/eslint.config.js .",

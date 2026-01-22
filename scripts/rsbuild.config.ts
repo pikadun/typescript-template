@@ -13,6 +13,7 @@ const serverConfig: EnvironmentConfig = {
     },
     output: {
         target: "node",
+        module: true,
         externals: Object.keys(pkg.dependencies),
         minify: {
             jsOptions: {
@@ -24,7 +25,7 @@ const serverConfig: EnvironmentConfig = {
     },
 };
 
-export const rsbuildConfig = defineConfig({
+export default defineConfig({
     root: ROOT_DIR,
     mode: process.env.BUILD_ENV === "production" ? "production" : "development",
     server: {

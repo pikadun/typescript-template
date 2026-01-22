@@ -1,10 +1,10 @@
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/sequelize";
+import { Inject, Injectable } from "@nestjs/common";
 import { TodoModel } from "./todo.model";
+import type { Repository } from "../../core/database/database.module";
 
 @Injectable()
 export class TodoService {
-    constructor(@InjectModel(TodoModel) private todoModel: typeof TodoModel) { }
+    constructor(@Inject(TodoModel) private todoModel: Repository<TodoModel>) { }
 
     async findAll(): Promise<TodoModel[]> {
         return this.todoModel.findAll();

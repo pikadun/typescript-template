@@ -13,8 +13,8 @@ const serverConfig: EnvironmentConfig = {
     },
     output: {
         target: "node",
-        module: true,
-        externals: Object.keys(pkg.dependencies),
+        module: false, // some sourcemap issues with esm in node
+        externals: Object.keys(pkg.dependencies).map(dep => new RegExp(`^${dep}($|/.*)`)),
         minify: {
             jsOptions: {
                 minimizerOptions: {
@@ -27,7 +27,6 @@ const serverConfig: EnvironmentConfig = {
 
 export default defineConfig({
     root: ROOT_DIR,
-    mode: process.env.BUILD_ENV === "production" ? "production" : "development",
     server: {
         printUrls: false,
         middlewareMode: true,

@@ -4,8 +4,8 @@
   "description": "Server-first HTML rendering stack with NestJS and Rsbuild",
   "type": "module",
   "scripts": {
-    "dev": "node --experimental-strip-types scripts/start.ts",
-    "build": "BUILD_ENV=production rsbuild build --config ./scripts/rsbuild.config.ts",
+    "dev": "node --experimental-strip-types --experimental-vm-modules scripts/start.ts",
+    "build": "rsbuild build --config ./scripts/rsbuild.config.ts --mode production",
     "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
     "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
     "eslint": "eslint --config ./eng/eslint.config.js .",
@@ -17,26 +17,24 @@
   "author": "Dunn",
   "license": "MIT",
   "dependencies": {
-    "@nestjs/common": "^11.1.11",
-    "@nestjs/core": "^11.1.11",
-    "@nestjs/platform-fastify": "^11.1.11",
-    "@nestjs/sequelize": "^11.0.1",
-    "sequelize": "^6.37.7",
-    "sequelize-typescript": "^2.1.6",
-    "sqlite3": "^5.1.7"
+    "@nestjs/common": "^11.1.12",
+    "@nestjs/core": "^11.1.12",
+    "@nestjs/platform-fastify": "^11.1.12",
+    "@sequelize/core": "^7.0.0-alpha.47",
+    "@sequelize/sqlite3": "^7.0.0-alpha.47"
   },
   "devDependencies": {
     "@camaro/eslint-config": "~0.1.0",
     "@camaro/tsconfig": "^1.2.0",
-    "@commitlint/cli": "^20.3.0",
-    "@commitlint/config-conventional": "^20.3.0",
-    "@rsbuild/core": "^1.7.1",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
+    "@rsbuild/core": "^1.7.2",
     "@types/node": "^24.0.4",
-    "cspell": "^9.4.0",
+    "cspell": "^9.6.0",
     "eslint": "^9.39.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.51.0"
+    "typescript-eslint": "^8.53.1"
   }
 }

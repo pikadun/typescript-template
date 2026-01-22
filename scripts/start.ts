@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import type { Server } from "node:http";
 import path from "node:path";
 import { createRsbuild } from "@rsbuild/core";
-import { rsbuildConfig } from "./rsbuild.config.ts";
+import rsbuildConfig from "./rsbuild.config.ts";
 import { DIST_DIR, SERVER_ENTRY_NAME } from "./constant.ts";
 
 const rsbuild = await createRsbuild({ rsbuildConfig });

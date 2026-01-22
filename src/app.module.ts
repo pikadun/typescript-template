@@ -3,6 +3,6 @@ import { DatabaseModule } from "./core/database/database.module";
 import { TodoModule } from "./modules/todo/todo.module";
 
 @Module({
-    imports: [DatabaseModule, TodoModule],
+    imports: [DatabaseModule.forRoot(), TodoModule],
 })
 export class AppModule { }

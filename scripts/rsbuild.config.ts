@@ -22,7 +22,7 @@ const serverConfig: EnvironmentConfig = {
     },
     output: {
         target: "node",
-        module: false, // some sourcemap issues with esm in node
+        module: true, // some sourcemap issues with esm in node
         externals: Object.keys(pkg.dependencies).map(dep => new RegExp(`^${dep}($|/.*)`)),
         minify: {
             jsOptions: {
@@ -63,16 +63,15 @@ export default defineConfig({
          */
         writeToDisk: true,
     },
-    tools: {
-        rspack: {
-            devtool: "inline-cheap-module-source-map",
-        },
-    },
     environments: {
         server: serverConfig,
         client: clientConfig,
     },
     output: {
         distPath: DIST_DIR,
+        cleanDistPath: true,
+        sourceMap: {
+            js: "inline-source-map",
+        },
     },
 });

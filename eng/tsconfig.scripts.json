@@ -8,6 +8,6 @@
   },
   "include": [
     "../scripts/**/*.ts",
-    "../src/global.d.ts"
+    "../src/server/global.d.ts"
   ]
 }

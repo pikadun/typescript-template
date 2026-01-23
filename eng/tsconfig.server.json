@@ -6,6 +6,6 @@
     "tsBuildInfoFile": "../node_modules/.cache/tsconfig.server.tsbuildinfo"
   },
   "include": [
-    "../src/**/*.ts"
+    "../src/server/**/*.ts"
   ]
 }

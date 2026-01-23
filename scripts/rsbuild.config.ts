@@ -1,6 +1,15 @@
 import { defineConfig, type EnvironmentConfig } from "@rsbuild/core";
+import { pluginVue } from "@rsbuild/plugin-vue";
 import pkg from "../package.json" with { type: "json" };
-import { DIST_DIR, ROOT_DIR, SERVER_ENTRY_NAME, SERVER_ENTRY_PATH } from "./constant.ts";
+import {
+    CLIENT_ENTRY_NAME,
+    CLIENT_ENTRY_PATH,
+    DIST_DIR,
+    HTML_TEMPLATE_PATH,
+    ROOT_DIR,
+    SERVER_ENTRY_NAME,
+    SERVER_ENTRY_PATH,
+} from "./constant.ts";
 
 const serverConfig: EnvironmentConfig = {
     source: {
@@ -25,6 +34,21 @@ const serverConfig: EnvironmentConfig = {
     },
 };
 
+const clientConfig: EnvironmentConfig = {
+    source: {
+        entry: {
+            [CLIENT_ENTRY_NAME]: CLIENT_ENTRY_PATH,
+        },
+    },
+    output: {
+        target: "web",
+    },
+    html: {
+        template: HTML_TEMPLATE_PATH,
+    },
+    plugins: [pluginVue()],
+};
+
 export default defineConfig({
     root: ROOT_DIR,
     server: {
@@ -46,6 +70,7 @@ export default defineConfig({
     },
     environments: {
         server: serverConfig,
+        client: clientConfig,
     },
     output: {
         distPath: DIST_DIR,

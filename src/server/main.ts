@@ -8,11 +8,14 @@ let app: NestFastifyApplication;
 
 const bootstrap = async () => {
     app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
-        // TODO: enable this only in development mode
-        forceCloseConnections: true,
+        forceCloseConnections: !!global.devServer,
     });
 
-    const server = await app.listen(3000);
+    if (global.devServer) {
+        app.use(global.devServer.middlewares);
+    }
+
+    const server = await app.listen(8888);
     const appUrl = await app.getUrl();
 
     logger.log(`Application is running on: ${appUrl}`);

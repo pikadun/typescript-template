@@ -4,10 +4,10 @@
     "noEmit": true,
     "rewriteRelativeImportExtensions": true,
     "erasableSyntaxOnly": true,
-    "tsBuildInfoFile": "../node_modules/.cache/tsconfig.scripts.tsbuildinfo",
+    "tsBuildInfoFile": "../node_modules/.cache/tsbuild/scripts.tsbuildinfo"
   },
   "include": [
-    "../scripts/**/*.ts",
+    "**/*.ts",
     "../src/server/global.d.ts"
   ]
 }

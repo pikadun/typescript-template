@@ -1,4 +1,7 @@
 import { ts } from "@camaro/eslint-config/typescript";
+import globals from "globals";
+import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
+import pluginVue from "eslint-plugin-vue";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -7,7 +10,18 @@ export default [
         ignores: ["lib/**"],
     },
     {
-        files: ["src/**/*.module.ts"],
+        files: ["src/server/**/*.module.ts"],
         rules: { "@typescript-eslint/no-extraneous-class": "off" },
     },
+
+    ...defineConfigWithVueTs(
+        {
+            files: ["src/client/**/*.ts", "src/client/**/*.vue"],
+            languageOptions: {
+                globals: globals.browser,
+            },
+        },
+        pluginVue.configs["flat/essential"],
+        vueTsConfigs.recommended,
+    ),
 ];

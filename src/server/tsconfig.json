@@ -1,0 +1,14 @@
+{
+  "extends": "@camaro/tsconfig/base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/server.tsbuildinfo"
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}

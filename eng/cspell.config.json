@@ -4,6 +4,9 @@
     "useCache": true
   },
   "useGitignore": true,
+  "ignorePaths": [
+    "**/*.css"
+  ],
   "words": [
     "camaro",
     "commitlint",

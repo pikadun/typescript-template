@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node --experimental-strip-types --experimental-vm-modules scripts/start.ts",
     "build": "rsbuild build --config ./scripts/rsbuild.config.ts --mode production",
+    "build:dev": "rsbuild build --config ./scripts/rsbuild.config.ts --mode development",
     "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
     "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
     "eslint": "eslint --config ./eng/eslint.config.js .",
@@ -29,12 +30,17 @@
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
     "@rsbuild/core": "^1.7.2",
+    "@rsbuild/plugin-vue": "^1.2.3",
     "@types/node": "^24.0.4",
+    "@vue/eslint-config-typescript": "^14.6.0",
     "cspell": "^9.6.0",
     "eslint": "^9.39.2",
+    "eslint-plugin-vue": "^10.7.0",
+    "globals": "^17.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.53.1"
+    "typescript-eslint": "^8.53.1",
+    "vue": "^3.5.27"
   }
 }

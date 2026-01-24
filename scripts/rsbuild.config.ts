@@ -4,11 +4,13 @@ import pkg from "../package.json" with { type: "json" };
 import {
     CLIENT_ENTRY_NAME,
     CLIENT_ENTRY_PATH,
+    CLIENT_ENVIRONMENT_NAME,
     DIST_DIR,
     HTML_TEMPLATE_PATH,
     ROOT_DIR,
     SERVER_ENTRY_NAME,
     SERVER_ENTRY_PATH,
+    SERVER_ENVIRONMENT_NAME,
 } from "./constant.ts";
 
 const serverConfig: EnvironmentConfig = {
@@ -22,7 +24,7 @@ const serverConfig: EnvironmentConfig = {
     },
     output: {
         target: "node",
-        module: true, // some sourcemap issues with esm in node
+        module: true,
         externals: Object.keys(pkg.dependencies).map(dep => new RegExp(`^${dep}($|/.*)`)),
         minify: {
             jsOptions: {
@@ -55,23 +57,14 @@ export default defineConfig({
         printUrls: false,
         middlewareMode: true,
     },
-    dev: {
-        /**
-         * Rsbuild's dev server cannot automatically detect changes in build output.
-         * Writing to disk on every build allows us to check file mtime to determine
-         * if the server needs to restart.
-         */
-        writeToDisk: true,
-    },
     environments: {
-        server: serverConfig,
-        client: clientConfig,
+        [SERVER_ENVIRONMENT_NAME]: serverConfig,
+        [CLIENT_ENVIRONMENT_NAME]: clientConfig,
     },
     output: {
         distPath: DIST_DIR,
-        cleanDistPath: true,
         sourceMap: {
-            js: "inline-source-map",
+            js: "inline-cheap-source-map",
         },
     },
 });

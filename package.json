@@ -25,7 +25,7 @@
     "@sequelize/sqlite3": "^7.0.0-alpha.47"
   },
   "devDependencies": {
-    "@camaro/eslint-config": "~0.1.0",
+    "@camaro/eslint-config": "~0.1.1",
     "@camaro/tsconfig": "^1.2.0",
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",

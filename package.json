@@ -18,7 +18,6 @@
   "author": "Dunn",
   "license": "MIT",
   "dependencies": {
-    "@fastify/static": "^9.0.0",
     "@nestjs/common": "^11.1.12",
     "@nestjs/core": "^11.1.12",
     "@nestjs/platform-fastify": "^11.1.12",

@@ -3,7 +3,6 @@ import { AppModule } from "./app.module";
 import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fastify";
 import { Logger } from "@nestjs/common";
 import { join } from "node:path";
-import fastifyStatic from "@fastify/static";
 
 const logger = new Logger("Main");
 let app: NestFastifyApplication;
@@ -13,9 +12,8 @@ const bootstrap: Application["bootstrap"] = async () => {
         forceCloseConnections: true,
     }));
 
-    // 配置静态文件服务
-    await app.register(fastifyStatic, {
-        root: join(process.cwd(), "lib"),
+    app.useStaticAssets({
+        root: join(process.cwd(), "lib/static"),
         prefix: "/static/",
     });
 

@@ -1,7 +1,6 @@
 {
-  "extends": "@camaro/tsconfig/base.json",
+  "extends": "../eng/tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true,
     "rewriteRelativeImportExtensions": true,
     "erasableSyntaxOnly": true,
     "tsBuildInfoFile": "../node_modules/.cache/tsbuild/scripts.tsbuildinfo"

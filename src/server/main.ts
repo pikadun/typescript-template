@@ -6,7 +6,7 @@ import { Logger } from "@nestjs/common";
 const logger = new Logger("Main");
 let app: NestFastifyApplication;
 
-const bootstrap = async () => {
+const bootstrap: Application["bootstrap"] = async () => {
     app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({
         forceCloseConnections: true,
     }));
@@ -19,7 +19,7 @@ const bootstrap = async () => {
     return server;
 };
 
-const stop = async () => {
+const stop: Application["stop"] = async () => {
     await app.close();
 };
 

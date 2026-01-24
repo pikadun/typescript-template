@@ -18,11 +18,13 @@
   "author": "Dunn",
   "license": "MIT",
   "dependencies": {
+    "@fastify/static": "^9.0.0",
     "@nestjs/common": "^11.1.12",
     "@nestjs/core": "^11.1.12",
     "@nestjs/platform-fastify": "^11.1.12",
     "@sequelize/core": "^7.0.0-alpha.47",
-    "@sequelize/sqlite3": "^7.0.0-alpha.47"
+    "@sequelize/sqlite3": "^7.0.0-alpha.47",
+    "@vue/server-renderer": "^3.5.27"
   },
   "devDependencies": {
     "@camaro/eslint-config": "~0.1.1",

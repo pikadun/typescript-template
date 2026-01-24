@@ -48,7 +48,6 @@ const clientConfig: EnvironmentConfig = {
     html: {
         template: HTML_TEMPLATE_PATH,
     },
-    plugins: [pluginVue()],
 };
 
 export default defineConfig({
@@ -67,4 +66,5 @@ export default defineConfig({
             js: "inline-cheap-source-map",
         },
     },
+    plugins: [pluginVue()],
 });

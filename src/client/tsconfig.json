@@ -5,9 +5,15 @@
       "DOM",
       "ESNext"
     ],
-    "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/client.tsbuildinfo"
+    "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/client.tsbuildinfo",
+    "paths": {
+      "@shared/*": [
+        "../shared/*"
+      ]
+    }
   },
   "include": [
-    "**/*"
+    "**/*",
+    "../shared/vue.d.ts"
   ]
 }

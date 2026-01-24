@@ -3,9 +3,14 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/server.tsbuildinfo"
+    "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/server.tsbuildinfo",
+    "paths": {
+      "@shared/*": ["../shared/*"],
+      "@client/*": ["../client/*"]
+    }
   },
   "include": [
-    "./**/*.ts"
-  ]
+    "./**/*.ts",
+    "../shared/vue.d.ts",
+  ],
 }

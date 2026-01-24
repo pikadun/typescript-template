@@ -2,7 +2,7 @@ import { Controller, Get, OnModuleInit, Req, Res } from "@nestjs/common";
 import type { FastifyRequest, FastifyReply } from "fastify";
 import path from "node:path";
 import fs from "node:fs/promises";
-import { app } from "../../../client/ssr";
+import { app } from "@client/ssr";
 import { renderToString } from "@vue/server-renderer";
 
 @Controller()

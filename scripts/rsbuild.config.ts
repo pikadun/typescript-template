@@ -13,6 +13,8 @@ import {
     SERVER_ENVIRONMENT_NAME,
 } from "./constant.ts";
 
+const isDev = process.env.BUILD_ENV === "production" ? false : true;
+
 const serverConfig: EnvironmentConfig = {
     source: {
         entry: {
@@ -33,6 +35,9 @@ const serverConfig: EnvironmentConfig = {
                 },
             },
         },
+        sourceMap: {
+            js: isDev ? "inline-cheap-source-map" : "cheap-source-map",
+        },
     },
 };
 
@@ -44,6 +49,9 @@ const clientConfig: EnvironmentConfig = {
     },
     output: {
         target: "web",
+        sourceMap: {
+            js: isDev ? "inline-cheap-source-map" : false,
+        },
     },
     html: {
         template: HTML_TEMPLATE_PATH,
@@ -52,6 +60,7 @@ const clientConfig: EnvironmentConfig = {
 
 export default defineConfig({
     root: ROOT_DIR,
+    mode: isDev ? "development" : "production",
     server: {
         printUrls: false,
         middlewareMode: true,
@@ -62,9 +71,7 @@ export default defineConfig({
     },
     output: {
         distPath: DIST_DIR,
-        sourceMap: {
-            js: "inline-cheap-source-map",
-        },
+        legalComments: "none",
     },
     plugins: [pluginVue()],
 });

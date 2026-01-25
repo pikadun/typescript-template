@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node --experimental-strip-types --experimental-vm-modules scripts/start.ts",
-    "build": "rsbuild build --config ./scripts/rsbuild.config.ts --mode production",
-    "build:dev": "rsbuild build --config ./scripts/rsbuild.config.ts --mode development",
+    "build": "BUILD_ENV=production rsbuild build --config ./scripts/rsbuild.config.ts",
+    "build:dev": "rsbuild build --config ./scripts/rsbuild.config.ts",
     "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
     "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
     "eslint": "eslint --config ./eng/eslint.config.js .",

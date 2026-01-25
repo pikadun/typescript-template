@@ -3,9 +3,6 @@ import rsbuildConfig from "./rsbuild.config.ts";
 import { SERVER_ENTRY_NAME, SERVER_ENVIRONMENT_NAME } from "./constant.ts";
 import crypto from "node:crypto";
 
-// @ts-expect-error set to false if you want to use breakpoints in dev server
-rsbuildConfig.environments.server.output.module = false;
-
 const rsbuild = await createRsbuild({ rsbuildConfig });
 const devServer = await rsbuild.createDevServer();
 let nestApp: Application | undefined;

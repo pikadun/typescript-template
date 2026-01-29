@@ -2,8 +2,9 @@ import { Controller, Get, OnModuleInit, Req, Res } from "@nestjs/common";
 import type { FastifyRequest, FastifyReply } from "fastify";
 import path from "node:path";
 import fs from "node:fs/promises";
-import { app } from "@client/ssr";
-import { renderToString } from "@vue/server-renderer";
+import { createApp } from "@client/ssr";
+import { renderToString } from "vue/server-renderer";
+import { CLIENT_ENTRY_NAME, CLIENT_ENVIRONMENT_NAME, TEMPLATE_NAME, APP_PLACEHOLDER } from "@shared/constant";
 
 @Controller()
 export class RenderController implements OnModuleInit {
@@ -11,20 +12,29 @@ export class RenderController implements OnModuleInit {
 
     async onModuleInit() {
         if (!global.devServer) {
-            const templatePath = path.resolve(import.meta.dirname, "index.html");
+            const templatePath = path.resolve(import.meta.dirname, TEMPLATE_NAME);
             this.#template = await fs.readFile(templatePath, "utf-8");
         }
     }
 
     @Get("*")
     async render(@Req() req: FastifyRequest, @Res() res: FastifyReply) {
+        const app = createApp();
+        let template = this.#template;
+
         if (global.devServer) {
-            global.devServer.middlewares(req.raw, res.raw);
+            if (!req.headers.accept?.includes("text/html")) {
+                global.devServer.middlewares(req.raw, res.raw);
+                return;
+            }
+
+            template = await global.devServer.environments[CLIENT_ENVIRONMENT_NAME]
+                ?.getTransformedHtml(CLIENT_ENTRY_NAME) ?? "";
         }
-        else {
-            const htmlContent = await renderToString(app);
-            const html = this.#template.replace("<!--app-->", htmlContent);
-            res.type("text/html").send(html);
-        }
+
+        const content = await renderToString(app);
+        const html = template.replace(APP_PLACEHOLDER, content);
+
+        res.type("text/html").send(html);
     }
 }

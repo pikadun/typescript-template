@@ -9,6 +9,9 @@
     },
     {
       "path": "./src/client/tsconfig.json"
+    },
+    {
+      "path": "./src/shared/tsconfig.json"
     }
   ]
 }

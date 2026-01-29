@@ -1,12 +1,15 @@
 {
   "extends": "../eng/tsconfig.base.json",
   "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "rewriteRelativeImportExtensions": true,
     "erasableSyntaxOnly": true,
-    "tsBuildInfoFile": "../node_modules/.cache/tsbuild/scripts.tsbuildinfo"
+    "tsBuildInfoFile": "../node_modules/.cache/tsbuild/scripts.tsbuildinfo",
   },
   "include": [
     "**/*.ts",
+    "../src/shared/constant.ts",
     "../src/server/global.d.ts"
   ]
 }

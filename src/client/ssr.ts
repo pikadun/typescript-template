@@ -1,4 +1,8 @@
 import { createSSRApp } from "vue";
 import App from "./App.vue";
 
-export const app = createSSRApp(App);
+export const createApp = () => {
+    const app = createSSRApp(App);
+
+    return app;
+};

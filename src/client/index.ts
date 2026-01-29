@@ -1,7 +1,6 @@
-import { createSSRApp } from "vue";
-import App from "./App.vue";
 import "./index.css";
+import { createApp } from "./ssr";
 
-const app = createSSRApp(App);
+const app = createApp();
 
 app.mount("#root");

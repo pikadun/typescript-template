@@ -2,21 +2,19 @@ import { createRsbuild, type Rspack, type OnAfterDevCompileFn } from "@rsbuild/c
 import rsbuildConfig from "./rsbuild.config.ts";
 import { SERVER_ENTRY_NAME, SERVER_ENVIRONMENT_NAME } from "./constant.ts";
 import crypto from "node:crypto";
+import { type Socket } from "node:net";
 
 const rsbuild = await createRsbuild({ rsbuildConfig });
 const devServer = await rsbuild.createDevServer();
+const sockets = new Set<Socket>();
+
 let nestApp: Application | undefined;
 let legacyHash = "";
 
 const onAfterDevCompile: OnAfterDevCompileFn = async (info) => {
     const stats = (info.stats as Rspack.MultiStats).stats;
     const serverStats = stats.find(s => s.compilation.name === SERVER_ENVIRONMENT_NAME);
-
-    if (!serverStats) {
-        throw new Error("Server stats not found");
-    }
-
-    const assets = serverStats.compilation.assets[`${SERVER_ENTRY_NAME}.js`];
+    const assets = serverStats?.compilation.assets[`${SERVER_ENTRY_NAME}.js`];
 
     if (!assets) {
         throw new Error("Server assets not found");
@@ -28,12 +26,25 @@ const onAfterDevCompile: OnAfterDevCompileFn = async (info) => {
     if (legacyHash !== hash) {
         legacyHash = hash;
 
-        await nestApp?.stop();
-        nestApp = await devServer.environments.server?.loadBundle(SERVER_ENTRY_NAME);
-        if (nestApp) {
-            const httpServer = await nestApp.bootstrap();
-            devServer.connectWebSocket({ server: httpServer });
+        for (const socket of sockets) {
+            socket.destroy();
+            sockets.delete(socket);
         }
+
+        await nestApp?.stop();
+        nestApp = await devServer.environments[SERVER_ENVIRONMENT_NAME]?.loadBundle(SERVER_ENTRY_NAME);
+
+        if (!nestApp) {
+            throw new Error("Nest application failed to load");
+        }
+
+        const httpServer = await nestApp.bootstrap();
+
+        httpServer.on("upgrade", (req) => {
+            sockets.add(req.socket);
+        });
+
+        devServer.connectWebSocket({ server: httpServer });
     }
 };
 

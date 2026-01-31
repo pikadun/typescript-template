@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, createMemoryHistory } from "vue-router";
-import type { RouteRecordRaw, Router, RouterHistory } from "vue-router";
+import type { RouteRecordRaw, Router } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
     {
@@ -9,11 +9,12 @@ const routes: RouteRecordRaw[] = [
     },
 ];
 
-export const createAppRouter = (initialUrl?: string): Router => {
-    const isServer = typeof window === "undefined";
-    const history: RouterHistory = isServer
-        ? createMemoryHistory(initialUrl)
-        : createWebHistory();
+export const createAppRouter = (isBrowser: boolean): Router => {
+    const baseUrl = import.meta.env.BASE_URL;
+
+    const history = isBrowser
+        ? createWebHistory(baseUrl)
+        : createMemoryHistory(baseUrl);
 
     return createRouter({
         history,

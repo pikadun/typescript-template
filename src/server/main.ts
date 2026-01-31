@@ -4,6 +4,7 @@ import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fa
 import { Logger } from "@nestjs/common";
 import path from "node:path";
 import { STATIC_NAME } from "@shared/constant";
+import { config } from "./config";
 
 const logger = new Logger("Main");
 let app: NestFastifyApplication;
@@ -14,11 +15,11 @@ const bootstrap: Application["bootstrap"] = async () => {
     if (!global.devServer) {
         app.useStaticAssets({
             root: path.join(import.meta.dirname, STATIC_NAME),
-            prefix: path.join("/", import.meta.env.BASE_URL, STATIC_NAME, "/"),
+            prefix: path.join(config.basePath, STATIC_NAME, "/"),
         });
     }
 
-    const server = await app.listen(8888);
+    const server = await app.listen(config.port);
     const appUrl = await app.getUrl();
 
     logger.log(`Application is running on: ${appUrl}`);

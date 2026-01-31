@@ -36,7 +36,7 @@ export class RenderController implements OnModuleInit {
 
     @Get("*")
     async render(@Req() req: FastifyRequest, @Res() res: FastifyReply) {
-        const { app, router } = createApp(req.url);
+        const { app, router } = createApp(false);
         let template = this.#template;
 
         if (global.devServer) {

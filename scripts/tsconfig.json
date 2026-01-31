@@ -8,7 +8,7 @@
     "tsBuildInfoFile": "../node_modules/.cache/tsbuild/scripts.tsbuildinfo",
   },
   "include": [
-    "**/*.ts",
+    "./**/*.ts",
     "../src/shared/constant.ts",
     "../src/server/global.d.ts"
   ]

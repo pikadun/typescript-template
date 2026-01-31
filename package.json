@@ -22,7 +22,8 @@
     "@nestjs/platform-fastify": "^11.1.12",
     "@sequelize/core": "^7.0.0-alpha.47",
     "@sequelize/sqlite3": "^7.0.0-alpha.47",
-    "vue": "^3.5.27"
+    "vue": "^3.5.27",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@camaro/eslint-config": "~0.1.1",
@@ -41,7 +42,6 @@
     "lint-staged": "^16.2.7",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.53.1",
-    "vue-router": "^4.6.4",
     "vuetify": "^3.11.8"
   }
 }

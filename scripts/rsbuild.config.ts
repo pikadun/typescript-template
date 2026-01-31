@@ -31,6 +31,9 @@ const serverConfig: EnvironmentConfig = {
         target: "node",
         module: true,
         externals: Object.keys(pkg.dependencies).map(dep => new RegExp(`^${dep}($|/.*)`)),
+        sourceMap: {
+            js: isDev ? "inline-cheap-module-source-map" : "nosources-source-map",
+        },
         minify: {
             jsOptions: {
                 minimizerOptions: {
@@ -64,13 +67,13 @@ export default defineConfig({
         base: path.join("/", process.env.BASE_URL ?? "", "/"),
         publicDir: false,
     },
-    environments: {
-        [SERVER_ENVIRONMENT_NAME]: serverConfig,
-        [CLIENT_ENVIRONMENT_NAME]: clientConfig,
+    html: {
+        template: HTML_TEMPLATE_PATH,
+        favicon: FAVICON_PATH,
     },
     source: {
         define: {
-            HTML_APP_PLACEHOLDER: JSON.stringify(APP_PLACEHOLDER),
+            APP_PLACEHOLDER: JSON.stringify(APP_PLACEHOLDER),
         },
     },
     output: {
@@ -79,13 +82,10 @@ export default defineConfig({
             favicon: STATIC_NAME,
         },
         legalComments: "none",
-        sourceMap: {
-            js: isDev ? "inline-cheap-module-source-map" : "nosources-source-map",
-        },
     },
-    html: {
-        template: HTML_TEMPLATE_PATH,
-        favicon: FAVICON_PATH,
+    environments: {
+        [SERVER_ENVIRONMENT_NAME]: serverConfig,
+        [CLIENT_ENVIRONMENT_NAME]: clientConfig,
     },
     tools: {
         rspack: {

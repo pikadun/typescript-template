@@ -4,6 +4,6 @@
     "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/shared.tsbuildinfo"
   },
   "include": [
-    "**/*.ts"
+    "./**/*.ts"
   ],
 }

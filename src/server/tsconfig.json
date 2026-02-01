@@ -6,7 +6,6 @@
     "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/server.tsbuildinfo",
     "paths": {
       "@shared/*": ["../shared/*"],
-      "@client/*": ["../client/*"]
     }
   },
   "include": [

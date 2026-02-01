@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory, createMemoryHistory } from "vue-router";
-import type { RouteRecordRaw, Router } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
+import type { RouteRecordRaw } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
     {
@@ -9,15 +9,9 @@ const routes: RouteRecordRaw[] = [
     },
 ];
 
-export const createAppRouter = (isBrowser: boolean): Router => {
-    const baseUrl = import.meta.env.BASE_URL;
-
-    const history = isBrowser
-        ? createWebHistory(baseUrl)
-        : createMemoryHistory(baseUrl);
-
+export const createAppRouter = () => {
     return createRouter({
-        history,
+        history: createWebHistory(import.meta.env.BASE_URL),
         routes,
     });
 };

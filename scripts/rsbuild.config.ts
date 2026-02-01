@@ -14,7 +14,7 @@ import {
     SERVER_ENVIRONMENT_NAME,
 } from "./constant.ts";
 import path from "node:path";
-import { APP_PLACEHOLDER, STATIC_NAME } from "../src/shared/constant.ts";
+import { STATIC_NAME } from "../src/shared/constant.ts";
 
 const isDev = process.env.NODE_ENV === "production" ? false : true;
 
@@ -70,11 +70,6 @@ export default defineConfig({
     html: {
         template: HTML_TEMPLATE_PATH,
         favicon: FAVICON_PATH,
-    },
-    source: {
-        define: {
-            APP_PLACEHOLDER: JSON.stringify(APP_PLACEHOLDER),
-        },
     },
     output: {
         distPath: {

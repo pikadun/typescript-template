@@ -2,9 +2,9 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fastify";
 import { Logger } from "@nestjs/common";
-import path from "node:path";
-import { STATIC_NAME } from "@shared/constant";
 import { config } from "./config";
+import path from "node:path";
+import { STATIC_NAME } from "../shared/constant";
 
 const logger = new Logger("Main");
 let app: NestFastifyApplication;
@@ -12,11 +12,11 @@ let app: NestFastifyApplication;
 const bootstrap: Application["bootstrap"] = async () => {
     app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
 
+    // 生产环境下代理静态资源
     if (!global.devServer) {
-        app.useStaticAssets({
-            root: path.join(import.meta.dirname, STATIC_NAME),
-            prefix: path.join(config.basePath, STATIC_NAME, "/"),
-        });
+        const staticPath = path.join(import.meta.dirname, STATIC_NAME);
+        const staticPrefix = path.join(config.basePath, STATIC_NAME);
+        app.useStaticAssets({ root: staticPath, prefix: staticPrefix });
     }
 
     const server = await app.listen(config.port);

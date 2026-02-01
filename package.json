@@ -1,7 +1,7 @@
 {
   "name": "web-template",
   "version": "0.0.1",
-  "description": "Server-first HTML rendering stack with NestJS and Rsbuild",
+  "description": "web template project",
   "type": "module",
   "scripts": {
     "dev": "APP_ENV=development node --experimental-strip-types --experimental-vm-modules scripts/start.ts",
@@ -21,9 +21,7 @@
     "@nestjs/core": "^11.1.12",
     "@nestjs/platform-fastify": "^11.1.12",
     "@sequelize/core": "^7.0.0-alpha.47",
-    "@sequelize/sqlite3": "^7.0.0-alpha.47",
-    "vue": "^3.5.27",
-    "vue-router": "^4.6.4"
+    "@sequelize/sqlite3": "^7.0.0-alpha.47"
   },
   "devDependencies": {
     "@camaro/eslint-config": "~0.1.1",
@@ -42,6 +40,8 @@
     "lint-staged": "^16.2.7",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.53.1",
+    "vue": "^3.5.27",
+    "vue-router": "^4.6.4",
     "vuetify": "^3.11.8"
   }
 }

@@ -12,9 +12,9 @@ import {
     SERVER_ENTRY_NAME,
     SERVER_ENTRY_PATH,
     SERVER_ENVIRONMENT_NAME,
+    STATIC_NAME,
 } from "./constant.ts";
 import path from "node:path";
-import { STATIC_NAME } from "../src/shared/constant.ts";
 
 const isDev = process.env.NODE_ENV === "production" ? false : true;
 

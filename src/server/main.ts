@@ -4,7 +4,6 @@ import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fa
 import { Logger } from "@nestjs/common";
 import { config } from "./config";
 import path from "node:path";
-import { STATIC_NAME } from "../shared/constant";
 
 const logger = new Logger("Main");
 let app: NestFastifyApplication;
@@ -14,8 +13,9 @@ const bootstrap: Application["bootstrap"] = async () => {
 
     // 生产环境下代理静态资源
     if (!global.devServer) {
-        const staticPath = path.join(import.meta.dirname, STATIC_NAME);
-        const staticPrefix = path.join(config.basePath, STATIC_NAME);
+        const staticName = "static";
+        const staticPath = path.join(import.meta.dirname, staticName);
+        const staticPrefix = path.join(config.basePath, staticName);
         app.useStaticAssets({ root: staticPath, prefix: staticPrefix });
     }
 

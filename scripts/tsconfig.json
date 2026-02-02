@@ -9,7 +9,6 @@
   },
   "include": [
     "./**/*.ts",
-    "../src/shared/constant.ts",
     "../src/server/global.d.ts"
   ]
 }

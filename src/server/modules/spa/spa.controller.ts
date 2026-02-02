@@ -2,7 +2,6 @@ import { Controller, Get, NotFoundException, OnModuleInit, Req, Res } from "@nes
 import type { FastifyRequest, FastifyReply } from "fastify";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { TEMPLATE_NAME } from "@shared/constant";
 
 @Controller()
 export class SpaController implements OnModuleInit {
@@ -10,7 +9,7 @@ export class SpaController implements OnModuleInit {
 
     async onModuleInit() {
         if (!global.devServer) {
-            const templatePath = path.join(import.meta.dirname, TEMPLATE_NAME);
+            const templatePath = path.join(import.meta.dirname, "index.html");
             this.#template = await fs.readFile(templatePath, "utf-8");
         }
     }

@@ -1,6 +1,6 @@
 import { defineConfig, type ViteDevServer, type Plugin } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { SERVER_ENTRY_PATH } from "./constant.ts";
+import { DIST_DIR, ROOT_DIR, SERVER_ENTRY_NAME, SERVER_ENTRY_PATH, SERVER_ENVIRONMENT_NAME } from "./constant.ts";
 import crypto from "node:crypto";
 
 const hotReload = (): Plugin => {
@@ -34,11 +34,30 @@ const hotReload = (): Plugin => {
         },
     };
 };
-
 export default defineConfig({
+    root: ROOT_DIR,
     appType: "custom",
     server: {
         middlewareMode: true,
+    },
+    publicDir: false,
+    environments: {
+        [SERVER_ENVIRONMENT_NAME]: {
+            build: {
+                rolldownOptions: {
+                    input: {
+                        [SERVER_ENTRY_NAME]: SERVER_ENTRY_PATH,
+                    },
+                    output: {
+                        sourcemap: "inline",
+                    },
+                },
+                emptyOutDir: false,
+            },
+        },
+    },
+    build: {
+        outDir: DIST_DIR,
     },
     plugins: [vue(), hotReload()],
 });

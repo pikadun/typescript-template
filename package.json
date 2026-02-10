@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "APP_ENV=development node --experimental-strip-types scripts/start.ts",
-    "build": "rsbuild build --config ./scripts/rsbuild.config.ts",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --config ./scripts/vite.config.ts",
+    "build:server": "vite build --config ./scripts/vite.config.ts --ssr",
     "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
     "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
     "eslint": "eslint --config ./eng/eslint.config.js .",

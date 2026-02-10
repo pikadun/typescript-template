@@ -10,6 +10,7 @@ export class SpaDevController {
                 // @ts-expect-error Forward body to Rsbuild's dev server
                 req.raw.body = req.body;
             }
+
             global.devServer.middlewares(req.raw, res.raw);
         }
     }

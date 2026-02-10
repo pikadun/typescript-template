@@ -8,10 +8,8 @@ export class SpaController implements OnModuleInit {
     #template?: string;
 
     async onModuleInit() {
-        if (!global.devServer) {
-            const templatePath = path.join(import.meta.dirname, "index.html");
-            this.#template = await fs.readFile(templatePath, "utf-8");
-        }
+        const templatePath = path.join(import.meta.dirname, "index.html");
+        this.#template = await fs.readFile(templatePath, "utf-8");
     }
 
     @Get("*")

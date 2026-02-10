@@ -4,7 +4,7 @@
   "description": "web template project",
   "type": "module",
   "scripts": {
-    "dev": "APP_ENV=development node --experimental-strip-types --experimental-vm-modules scripts/start.ts",
+    "dev": "APP_ENV=development node --experimental-strip-types scripts/start.ts",
     "build": "rsbuild build --config ./scripts/rsbuild.config.ts",
     "commitlint": "commitlint --config ./eng/.commitlintrc.json --edit",
     "cspell": "cspell --config ./eng/cspell.config.json --quiet .",
@@ -28,9 +28,8 @@
     "@camaro/tsconfig": "^1.2.0",
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
-    "@rsbuild/core": "^1.7.3",
-    "@rsbuild/plugin-vue": "^1.2.5",
     "@types/node": "^24.0.4",
+    "@vitejs/plugin-vue": "^6.0.4",
     "@vue/eslint-config-typescript": "^14.6.0",
     "cspell": "^9.6.4",
     "eslint": "^9.39.2",
@@ -40,6 +39,7 @@
     "lint-staged": "^16.2.7",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.54.0",
+    "vite": "^8.0.0-beta.13",
     "vue": "^3.5.27",
     "vue-router": "^5.0.2",
     "vuetify": "^3.11.8"

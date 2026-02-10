@@ -4,6 +4,7 @@ import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fa
 import { Logger } from "@nestjs/common";
 import { config } from "./config";
 import path from "node:path";
+console.log(2);
 
 const logger = new Logger("Main");
 let app: NestFastifyApplication;

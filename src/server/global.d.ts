@@ -1,10 +1,10 @@
 /// <reference types="@rsbuild/core/types" />
 
-import type { RsbuildDevServer } from "@rsbuild/core";
 import { type Server } from "http";
+import { type ViteDevServer } from "vite";
 
 declare global {
-    var devServer: RsbuildDevServer | undefined;
+    var devServer: ViteDevServer | undefined;
 
     interface Application {
         bootstrap: () => Promise<Server>;

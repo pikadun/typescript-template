@@ -9,7 +9,6 @@ const hotReload = (): Plugin => {
 
     const startOrReloadServer = async (devServer: ViteDevServer) => {
         global.devServer = devServer;
-
         await nestApp?.stop();
         nestApp = await devServer.ssrLoadModule(SERVER_ENTRY_PATH) as Application;
         await nestApp.bootstrap();
@@ -27,7 +26,7 @@ const hotReload = (): Plugin => {
             const content = await ctx.read();
             const hash = crypto.createHash("md5").update(content).digest("hex");
 
-            if (cache.get(ctx.file) === hash) {
+            if (cache.get(ctx.file) !== hash) {
                 await startOrReloadServer(ctx.server);
                 cache.set(ctx.file, hash);
             }

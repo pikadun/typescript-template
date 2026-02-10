@@ -1,4 +1,4 @@
-import { DynamicModule, Global, Logger, Module, Provider } from "@nestjs/common";
+import { DynamicModule, Global, Logger, Module, OnModuleDestroy, Provider } from "@nestjs/common";
 import { Sequelize, Options, ModelStatic, Model } from "@sequelize/core";
 import { SqliteDialect } from "@sequelize/sqlite3";
 
@@ -7,9 +7,13 @@ export type Repository<T extends Model> = ModelStatic<T>;
 
 @Global()
 @Module({})
-export class DatabaseModule {
+export class DatabaseModule implements OnModuleDestroy {
     static models = new Set<ModelStatic>();
     static logger = new Logger(DatabaseModule.name);
+
+    onModuleDestroy() {
+        DatabaseModule.models.clear();
+    }
 
     static forRoot() {
         const options: Options<SqliteDialect> = {

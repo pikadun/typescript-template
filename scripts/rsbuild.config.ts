@@ -1,5 +1,6 @@
 import { defineConfig, type EnvironmentConfig } from "@rsbuild/core";
 import { pluginVue } from "@rsbuild/plugin-vue";
+import { VuetifyPlugin } from "webpack-plugin-vuetify";
 import pkg from "../package.json" with { type: "json" };
 import {
     CLIENT_ENTRY_NAME,
@@ -14,7 +15,6 @@ import {
     SERVER_ENVIRONMENT_NAME,
     STATIC_NAME,
 } from "./constant.ts";
-import path from "node:path";
 
 const isDev = process.env.NODE_ENV === "production" ? false : true;
 
@@ -29,17 +29,9 @@ const serverConfig: EnvironmentConfig = {
     },
     output: {
         target: "node",
-        module: true,
-        externals: Object.keys(pkg.dependencies).map(dep => new RegExp(`^${dep}($|/.*)`)),
+        externals: [...Object.keys(pkg.dependencies), "tslib"].map(dep => new RegExp(`^${dep}($|/.*)`)),
         sourceMap: {
             js: isDev ? "inline-cheap-module-source-map" : "nosources-source-map",
-        },
-        minify: {
-            jsOptions: {
-                minimizerOptions: {
-                    mangle: false,
-                },
-            },
         },
     },
 };
@@ -61,10 +53,12 @@ const clientConfig: EnvironmentConfig = {
 export default defineConfig({
     root: ROOT_DIR,
     mode: isDev ? "development" : "production",
+    dev: {
+        assetPrefix: "./",
+    },
     server: {
         printUrls: false,
         middlewareMode: true,
-        base: path.join("/", process.env.BASE_URL ?? "", "/"),
         publicDir: false,
     },
     html: {
@@ -77,6 +71,7 @@ export default defineConfig({
             favicon: STATIC_NAME,
         },
         legalComments: "none",
+        assetPrefix: "./",
     },
     environments: {
         [SERVER_ENVIRONMENT_NAME]: serverConfig,
@@ -90,6 +85,7 @@ export default defineConfig({
             watchOptions: {
                 aggregateTimeout: 50,
             },
+            plugins: [new VuetifyPlugin({})],
         },
     },
     plugins: [pluginVue()],

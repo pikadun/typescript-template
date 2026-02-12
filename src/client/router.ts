@@ -1,17 +1,27 @@
-import { createRouter, createWebHistory } from "vue-router";
-import type { RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, createMemoryHistory } from "vue-router";
+import type { RouteRecordRaw, Router } from "vue-router";
+import Homepage from "./views/Homepage.vue";
 
 const routes: RouteRecordRaw[] = [
     {
         path: "/",
         name: "Home",
-        component: () => import("./views/HomePage.vue"),
+        component: Homepage,
     },
 ];
 
-export const createAppRouter = () => {
+export interface CreateAppRouterOptions {
+    isBrowser?: boolean;
+    basePath?: string;
+}
+
+export const createAppRouter = (options: CreateAppRouterOptions): Router => {
+    const history = options.isBrowser
+        ? createWebHistory(options.basePath)
+        : createMemoryHistory(options.basePath);
+
     return createRouter({
-        history: createWebHistory(import.meta.env.BASE_URL),
+        history,
         routes,
     });
 };

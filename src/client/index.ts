@@ -1,21 +1,10 @@
-import { createApp } from "vue";
-import "vuetify/styles";
-import { createVuetify } from "vuetify";
+import { createApp } from "./ssr";
 
-import App from "./App.vue";
-import "./index.css";
+const baseElement = document.querySelector("base");
+const basePath = baseElement?.getAttribute("href") ?? "/";
 
-import { createAppRouter } from "./router";
+const { app, router } = createApp({ isBrowser: true, basePath });
 
-const app = createApp(App);
-const router = createAppRouter();
-const vuetify = createVuetify({
-    theme: {
-        defaultTheme: "system",
-    },
-});
-
-app.use(router);
-app.use(vuetify);
+await router.isReady();
 
 app.mount("#root");

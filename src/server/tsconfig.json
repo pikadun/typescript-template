@@ -8,6 +8,9 @@
       "@shared/*": [
         "../shared/*"
       ],
+      "@client/*": [
+        "../client/*"
+      ],
     }
   },
   "include": [

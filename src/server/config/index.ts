@@ -1,3 +1,14 @@
-import { ProductionConfig } from "./production.config";
+import { type Config, ProductionConfig } from "./production.config";
+import { DevelopmentConfig } from "./development.config";
+import { AppEnv } from "../utils/env";
+import Deepmerge from "@fastify/deepmerge";
 
-export const config = ProductionConfig;
+const deepmerge = Deepmerge();
+
+let config = ProductionConfig;
+
+if (config.appEnv === AppEnv.Development) {
+    config = deepmerge(config, DevelopmentConfig) as Config;
+}
+
+export { config };

@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory, createMemoryHistory } from "vue-router";
 import type { RouteRecordRaw, Router } from "vue-router";
 import Homepage from "./views/Homepage.vue";
+import { RouteName } from "@shared/constant";
 
 const routes: RouteRecordRaw[] = [
     {
         path: "/",
-        name: "Home",
+        name: RouteName.Home,
         component: Homepage,
+    },
+    {
+        path: "/:catchAll(.*)",
+        name: RouteName.CatchAll,
+        redirect: { name: RouteName.Home },
     },
 ];
 

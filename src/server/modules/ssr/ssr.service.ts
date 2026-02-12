@@ -2,16 +2,17 @@ import { Injectable } from "@nestjs/common";
 import { renderToString } from "vue/server-renderer";
 import { config } from "../../config";
 import { createApp } from "@client/ssr";
-import { createRouterMatcher } from "vue-router";
+import { RouteName } from "@shared/constant";
+import path from "node:path";
+import { HTML_BASE_PLACEHOLDER, HTML_CONTENT_PLACEHOLDER } from "../../constant";
 
 @Injectable()
 export class SsrService {
     async render(template: string, url: string) {
         const { app, router } = createApp({ basePath: config.basePath });
-        const matcher = createRouterMatcher(router.getRoutes(), router.options);
-        const location = matcher.resolve({ path: url }, router.currentRoute.value);
+        const location = router.resolve(url);
 
-        if (!location.matched.length) {
+        if (location.name === RouteName.CatchAll) {
             return null;
         }
 
@@ -19,8 +20,8 @@ export class SsrService {
         await router.isReady();
 
         const renderData: Record<string, string> = {
-            base: `<base href="${config.basePath}">`,
-            content: await renderToString(app),
+            [HTML_BASE_PLACEHOLDER]: `<base href="${path.join(config.basePath, "/")}">`,
+            [HTML_CONTENT_PLACEHOLDER]: await renderToString(app),
         };
 
         return template.replace(/<!--(\w+)-->/g, (_, key: string) => renderData[key] ?? "");

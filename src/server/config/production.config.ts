@@ -8,7 +8,7 @@ export interface Config {
 
 export const ProductionConfig: Config = {
     /**
-     * The base path for the server
+     * The base path for the server，must without trailing slash, except root "/"
      */
     basePath: "/",
     /**

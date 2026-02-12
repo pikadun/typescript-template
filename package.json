@@ -12,7 +12,9 @@
     "lint": "npm run cspell && npm run eslint",
     "lint:staged": "lint-staged --config ./eng/.lintstagedrc.json",
     "postinstall": "husky || true",
-    "type-check": "rm -rf ./node_modules/.cache/tsbuild && tsc --build ./tsconfig.json"
+    "prepreview": "npm run build",
+    "preview": "APP_ENV=development node lib/main.js",
+    "type-check": "rm -rf ./node_modules/.cache/tsbuild && vue-tsc --build ./tsconfig.json"
   },
   "author": "Dunn",
   "license": "MIT",
@@ -28,8 +30,8 @@
     "vue-router": "^5.0.2"
   },
   "devDependencies": {
-    "@camaro/eslint-config": "^0.1.3",
-    "@camaro/tsconfig": "^1.2.0",
+    "@camaro/eslint-config": "^0.1.4",
+    "@camaro/tsconfig": "^1.3.0",
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@rsbuild/core": "^2.0.0-beta.4",
@@ -45,6 +47,7 @@
     "type-fest": "^5.4.4",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.54.0",
+    "vue-tsc": "^3.2.4",
     "vuetify": "^3.11.8",
     "webpack-plugin-vuetify": "^3.1.3"
   }

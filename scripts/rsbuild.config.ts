@@ -3,6 +3,7 @@ import { pluginVue } from "@rsbuild/plugin-vue";
 import { VuetifyPlugin } from "webpack-plugin-vuetify";
 import pkg from "../package.json" with { type: "json" };
 import {
+    ASSET_PREFIX,
     CLIENT_ENTRY_NAME,
     CLIENT_ENTRY_PATH,
     CLIENT_ENVIRONMENT_NAME,
@@ -54,12 +55,13 @@ export default defineConfig({
     root: ROOT_DIR,
     mode: isDev ? "development" : "production",
     dev: {
-        assetPrefix: "./",
+        assetPrefix: ASSET_PREFIX,
     },
     server: {
-        printUrls: false,
         middlewareMode: true,
+        printUrls: false,
         publicDir: false,
+        htmlFallback: false,
     },
     html: {
         template: HTML_TEMPLATE_PATH,
@@ -71,7 +73,7 @@ export default defineConfig({
             favicon: STATIC_NAME,
         },
         legalComments: "none",
-        assetPrefix: "./",
+        assetPrefix: ASSET_PREFIX,
     },
     environments: {
         [SERVER_ENVIRONMENT_NAME]: serverConfig,

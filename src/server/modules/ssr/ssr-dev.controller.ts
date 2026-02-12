@@ -1,7 +1,7 @@
-import { All, Controller, Req, Res } from "@nestjs/common";
+import { All, Controller, NotFoundException, Req, Res } from "@nestjs/common";
 import type { FastifyRequest, FastifyReply } from "fastify";
 import { SsrService } from "./ssr.service";
-import { CLIENT_ENTRY_NAME, CLIENT_ENVIRONMENT_NAME } from "@shared/constant";
+import { CLIENT_ENTRY_NAME, CLIENT_ENVIRONMENT_NAME } from "../../constant";
 import { stripBasePath } from "../../utils/url";
 
 @Controller()
@@ -20,12 +20,13 @@ export class SsrDevController {
             res.type("text/html").send(html);
         }
         else {
-            Object.assign(req.raw, {
-                body: req.body,
-                url,
-            });
+            Object.assign(req.raw, { body: req.body, url });
 
-            middlewares(req.raw, res.raw);
+            await new Promise<void>((_resolve, reject) => {
+                middlewares(req.raw, res.raw, () => {
+                    reject(new NotFoundException());
+                });
+            });
         }
     }
 }

@@ -6,6 +6,11 @@
       "ESNext"
     ],
     "tsBuildInfoFile": "../../node_modules/.cache/tsbuild/client.tsbuildinfo",
+    "paths": {
+      "@shared/*": [
+        "../shared/*"
+      ],
+    }
   },
   "include": [
     "./**/*",

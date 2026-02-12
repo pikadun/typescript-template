@@ -4,6 +4,7 @@ import { FastifyAdapter, type NestFastifyApplication } from "@nestjs/platform-fa
 import { Logger } from "@nestjs/common";
 import { config } from "./config";
 import path from "node:path";
+import { STATIC_NAME } from "./constant";
 
 const logger = new Logger("Main");
 let app: NestFastifyApplication;
@@ -11,10 +12,12 @@ let app: NestFastifyApplication;
 export const bootstrap: Application["bootstrap"] = async () => {
     app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
 
+    // Set global prefix for all routes, exclude the ssr route
+    app.setGlobalPrefix(config.basePath, { exclude: ["\\*"] });
+
     if (!global.devServer) {
-        const staticName = "static";
-        const staticPath = path.join(import.meta.dirname, staticName);
-        const staticPrefix = path.join(config.basePath, staticName);
+        const staticPath = path.join(import.meta.dirname, STATIC_NAME);
+        const staticPrefix = path.join(config.basePath, STATIC_NAME);
         app.useStaticAssets({ root: staticPath, prefix: staticPrefix });
     }
 

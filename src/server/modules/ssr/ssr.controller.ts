@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, OnModuleInit, Req, Res } from "@nestjs/common";
+import { Controller, Get, NotFoundException, type OnModuleInit, Req, Res } from "@nestjs/common";
 import type { FastifyRequest, FastifyReply } from "fastify";
 import fs from "node:fs/promises";
 import path from "node:path";

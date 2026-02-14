@@ -1,5 +1,9 @@
 <template>
-  <v-app>
+  <n-config-provider>
     <router-view />
-  </v-app>
+  </n-config-provider>
 </template>
+
+<script setup lang="ts">
+import { NConfigProvider } from "naive-ui";
+</script>

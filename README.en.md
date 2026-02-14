@@ -1,12 +1,12 @@
 # Web Template
 
-A full-stack web template project with Vue 3 SSR (Server-Side Rendering), powered by NestJS + Fastify on the backend and Rsbuild + Vuetify on the frontend.
+A full-stack web template project with Vue 3 SSR (Server-Side Rendering), powered by NestJS + Fastify on the backend and Rsbuild + Naive UI on the frontend.
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Frontend Framework | Vue 3, Vue Router 5, Vuetify 3 |
+| Frontend Framework | Vue 3, Vue Router 5, Naive UI |
 | Backend Framework | NestJS 11, Fastify |
 | Build Tool | Rsbuild 2 |
 | Database | Sequelize 7 (SQLite in-memory) |

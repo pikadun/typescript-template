@@ -1,6 +1,5 @@
 import { defineConfig, type EnvironmentConfig } from "@rsbuild/core";
 import { pluginVue } from "@rsbuild/plugin-vue";
-import { VuetifyPlugin } from "webpack-plugin-vuetify";
 import pkg from "../package.json" with { type: "json" };
 import {
     ASSET_PREFIX,
@@ -87,7 +86,6 @@ export default defineConfig({
             watchOptions: {
                 aggregateTimeout: 50,
             },
-            plugins: [new VuetifyPlugin({})],
         },
     },
     plugins: [pluginVue()],

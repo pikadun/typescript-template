@@ -1,12 +1,12 @@
 # Web Template
 
-一个全栈 Web 模板项目，使用 Vue 3 SSR（服务端渲染），后端基于 NestJS + Fastify，前端基于 Rsbuild + Vuetify。
+一个全栈 Web 模板项目，使用 Vue 3 SSR（服务端渲染），后端基于 NestJS + Fastify，前端基于 Rsbuild + Naive UI。
 
 ## 技术栈
 
 | 层 | 技术 |
 |---|---|
-| 前端框架 | Vue 3, Vue Router 5, Vuetify 3 |
+| 前端框架 | Vue 3, Vue Router 5, Naive UI |
 | 后端框架 | NestJS 11, Fastify |
 | 构建工具 | Rsbuild 2 |
 | 数据库 | Sequelize 7 (SQLite 内存模式) |
